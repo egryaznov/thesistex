@@ -1,0 +1,166 @@
+\chapter{Literature Review}
+\label{chap:lr}
+\chaptermark{Second Chapter Heading}
+The purpose of this chapter is to give a brief analysis of literature with respect to applied theory in our thesis.
+
+There are two major areas of Computer Science that are related out research: Knowledge Representation (KR) and Natural Language
+Processing (NLP). Each of these fields provides a crucial contribution to our topic.  We will examine them one by one and
+highlight some of the most important works.
+
+\section{Knowledge Representation}
+The field of Knowledge Representation is concerned with how the knowledge about our physical world can be stored, managed and
+utilized by machines or computers.
+KR owes its existence to the more general field of Artificial Intelligence, which prompted the study of encoding information about
+the physical reality into an intelligent system in such a way that it can be used by that system to solve complex problems.
+
+The main presupposition of the whole field of KR is that, in order for an intelligent agent to resolve a difficult problem, it
+needs an access to some form of a knowledge specific to a particular domain and that knowledge should be stored inside the agent.
+This presupposition is now widely known as the \textit{Knowledge Representation Hypothesis}:
+\begin{quote}
+    Any mechanically embodied intelligent process will be comprised of structural ingredients that (a) we as external observers
+    naturally take to represent a propositional account of the knowledge that the overall process exhibits (b) independent of such
+    external semantical attribution, play a formal but causal and essential role in engendering the behavior that manifests that
+    knowledge.
+\end{quote}
+This original formulation of the hypothesis is due to Smith \cite{smithyp}.
+
+Brachman and Levesque outlined the hypothesis in their article \textit{Expressiveness and tractability in Knowledge Representation
+and Reasoning}\cite{krhyp}. The authors argue that the trade-off between \textit{expressiveness} of a knowledge-based system and
+its \textit{tractability} (i.e. the ability to reason correctly) is intrinsic to every such system, and can only be partially
+solved.  According to them, it's impossible to implement a knowledge-based system that will be both highly expressive and
+completely tractable.
+
+Moreover, the whole enterprise of encoding knowledge directly into an agent is proven to be useful only in domain-specific
+applications, such as the famous \textit{block world} \cite{shrdlu} domain. A solution with at least partially hard-coded
+knowledge is tremendously difficult to scale. Since the dawn of Machine Learning, the plausibility of the hypothesis is
+continuously challenged. Indeed, it is questionable whether we can say about a neural network that it stores knowledge in the
+weights of its neurons. Thus, today the field of KR doesn't enjoy that much popularity because the main focus of the AI community
+has shifted to other areas, such as Deep Learning.
+
+The most prominent advances in the KR field were the development of Description (Terminological) and Temporal logics and the
+formulation of the concept of Ontology. They all are of great importance to our research, so we will survey them one by one.
+
+\subsection{Ontologies}
+The word "ontology", derived from the Greek word meaning "the study of being", was unwarrantably borrowed by computer scientists
+from the namesake branch of philosophy concerned with the nature of reality. Despite being a useful coinage in
+informatics, not all philosophers are content with such state of affairs \cite{confusion}.
+
+The term "ontology" in Computer Science refers to the mechanism by which reality is compartmentalized into a strictly-defined
+categories only to be read by machines later. According to Josephson et al. \cite{ontowhy} an ontology comprises a body of
+knowledge about a particular domain of interest. However, we must distinguish between an abstract conceptualization of a
+particular domain and a concrete instantiation of it. The latter is usually implied when the plural word "ontologies" is used.
+
+The typical ontology consists of:
+\begin{enumerate}
+    \item{A finite set of \textit{concepts} (a.k.a. nodes, classes). Represents entities of a domain.}
+    \item{A finite set of \textit{properties} (a.k.a. attributes, slots, roles). Represents what can be asked of a concept.}
+    \item{A finite set of \textit{relationships} between concepts.}
+    \item{A finite set of logical \textit{constraints}, which put the boundaries around what can and cannot be stored in an
+        ontology.}
+\end{enumerate}
+At the first sight, the description of an ontology highly resembles that of a database. Indeed, it is true that every database can
+be seen as a special case of ontology, but not vise-versa. As noted in \cite{krhyp}, the power of ontologies lies not in what can
+be said in it, but exactly \textit{what can be left unsaid}. For example, suppose we want to store the birth date of our
+grandfather, but all we know about him is that he won a medal fighting in WWII.
+Then we are forced, using a database, to left the \texttt{birth\_date} field empty, thus loosing the knowledge of his heroic deed.
+But, we can eloquently express this knowledge in some ontological lisp-like language as:
+\begin{verbatim}
+    (set birth_date (father (father me)) (during WWI))
+\end{verbatim}
+Later we can use this fact to reason about our ancestor more efficiently.
+
+Ontologies find their natural application in the context of our thesis.
+Since the original formulation of a concept, a lot of software has been developed to manage ontologies, including such systems as
+Protege, In4j and others. These systems have already been heavily used in the variety of different fields.
+
+For instance, Tan Mee Ting \cite{tanfamily} designed and
+implemented a genealogical ontology using Protege and evaluated its consistency with Pellet, HermiT and FACT++ reasoners. He
+showed that it is possible to construct a family ontology using \textit{Semantic Web} \cite{web} technologies with full capability of
+exchanging family history among all interested parties.
+
+An ontology can be used to model any kind of family tree, but the problem arises when a user wants to query his relatives using
+kinship terms. No standard out-of-the-box ontology query language is able to articulate statements such as in our example above.
+Although an ontology can be tailored to do so, it is not in any way a trivial matter. Maarten Marx \cite{xcpath} addressed
+this issue, but in the different area. He designed an extension for XPath, the first order node-selecting language for XML.
+
+Catherine Lai and Steven Bird \cite{ling} described the domain of linguistic trees and discussed the expressive requirements for a
+query language. Then they presented a language that can a wide range of queries over these trees, and showed that the language is
+first order complete. This language is also an extension of XPath.
+
+Artale et al. \cite{artale} did a comprehensive survey of various temporal knowledge representation formalisms.
+In particular, they analysed ontology and query languages based on the linear
+temporal logic LTL, the multi-dimensional Halpern-Shoham interval temporal logic, as well as the metric temporal logic MTL. They
+note that the W3C standard ontology languages, OWL 2 QL and OWL 2 EL, are designed to represent knowledge over a static domain,
+and are not well-suited for temporal data.
+
+\subsection{Temporal and Description Logics}
+The usage of logic in the field of KR is motivated by its excellence in such areas as mathematics and computer science in general.
+The early researches in KR saw the unharvested power of logic -- especially first-order logic -- as a main component in any
+intelligent system. Subsequent works showed that FOL can provide semantics for specific kind of KR structures:
+\textit{frames} \cite{frames}. Later, Brachman and Levesque proved \cite{krhyp} that we don't need the \textit{whole} FOL for that
+purpose, but only certain fragments of it. Moreover, different fragments of FOL have different expressive power and tractability.
+Thus, research in the area of Description Logic began under the label \textit{terminological systems}, only to be later renamed to
+\textit{Description Logic} when the focus was shifted to the properties of underlying logical systems.
+
+Description Logic finds its application in the context of this thesis as a natural formalism for family trees. However, as
+expressive as any DL can be, formulating the concept of time requires adding another modal operator. Any logic which handles time
+is knows as \textit{temporal logic}. Philosophers have tried to put time into a coherent framework since \textit{Aristotle}, in
+the 20th century mathematicians and computer scientists proposed various formalisms, among which was Allens' \textit{interval
+algebra}\cite{allen} and the temporal logic of Shoham\cite{shoh}. Thus, what we need in this thesis is an amalgamation of a
+description and temporal logic.
+
+The first successful attempt at integrating two logics is due to Schmiedel \cite{schmiedel}. He combined the DL in the tradition
+of KL-ONE \cite{klone}, Shohams' \cite{shoh} temporal logic and Allens' \cite{allen} algebra into one unifying framework. The main
+features of his formalism are the complete preservation of original DL and the use of lisp-like syntax for expressing roles,
+concepts and time entires.
+
+The application of temporal logic to graphs, relational databases and ontologies is also a heavily-invested subject.
+Barcelo and Lubkin examined \cite{barcelo} several temporal logics over unranked trees and characterize commonly used fragments of
+first-order (FO) and monadic second-order logic (MSO) for them. They also considered MSO sibling-invariant queries, that can use the
+sibling ordering but do not depend on the particular one used, and captured them by a variant of the μ-calculus with modulo
+quantifiers.
+
+Alexander Tuzhilin and James Clifford defined \cite{clif} a temporal algebra that is applicable to any temporal relational data
+model supporting discrete linear bounded time. This algebra has the five basic relational algebra operators extended to the
+temporal domain and an operator of linear recursion. They showed that this algebra has the expressive power of a safe temporal
+calculus based on the predicate temporal logic with the "until" and "since" temporal operators.
+
+Perry in his dissertation \cite{perry} highlighted that even in state-of-the-art ontological query languages, such as OWL,
+expressing the concept of time is an arduous task. He augmented the \textit{Resource Description Framework} with temporal RDF
+graphs and extended the W3C-recommended SPARQL query language to support these new structures.
+
+An adequate representation of time is the holy grail among the researchers in the field of ontology development.  Baratis et al.
+\cite{toql} designed and implemented \textit{TOQL}: a high-level SQL-like language which is capable of expressing temporal
+queries. They motivate the need for such a language by noting that conveying the concept of time using classical languages, such
+as OWL, is proven to be difficult, although feasible. They also developed an application that supports translation and execution
+of TOQL queries on temporal ontologies combined with a reasoning mechanism based on event calculus.
+
+\section{Natural Language Processing}
+The main goal of Natural Language Processing (NLP) field is to invent, study and implement algorithms and techniques that help a
+computer understand an ordinary language, such as English, Russian, French or Swahili.
+
+A lot of research in NLP is dedicated to the problem of querying a relational database in some natural language. Since the early
+developments, a substantial progress has been achieved. For instance, Jeremy Ferrero et al. proposed and implemented \cite{fr2sql}
+a solution to query any database, irrespective of its' schema, in virtually any natural language. They showed that it supports
+more operations that most of the other translators. They tested their program on English and French languages.
+
+Another similar attempt was made \cite{not} by Norouzifard et al. They implemented an expert system using Prolog to transform a
+sentence in a natural language to SQL. Chaudhari \cite{chaudhari} presented a light weight technique of converting a natural
+language statement into equivalent SQL
+statement.
+
+Nelken et al. took \cite{nelken} a step further and presented a novel controlled NL interface to \textit{temporal databases}, based on
+translating NL questions into \textit{SQL/Temporal}, a temporal database query language. They noted that their translation method
+is considerably simpler than previous attempts in this direction.
+
+\section{Conclusions}
+In this literature review we surveyed several major field in Computer Science. We showed that each of these fields has been advanced
+considerably over the last half-century, especially the domain of ontologies. However, we did not find a research that would
+satisfy all of the following criteria:
+\begin{enumerate}
+    \item{Employ either a temporal ontology or a temporal database to store knowledge of temporal family relations.}
+    \item{Propose a solution for effective navigation in a genealogical tree.}
+    \item{Design and implement a text parser for querying temporal ontologies in natural language.}
+\end{enumerate}
+Although there were articles that partially fulfill some of these requirements, none of them satisfied all.
+This entails the novelty of our work.
