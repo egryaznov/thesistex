@@ -1,17 +1,15 @@
 \chapter{Literature Review}
 \label{chap:lr}
 \chaptermark{Second Chapter Heading}
-The purpose of this chapter is to give a brief analysis of literature with respect to applied theory in our thesis.
-
-There are two major areas of Computer Science that are related out research: Knowledge Representation (KR) and Natural Language
-Processing (NLP). Each of these fields provides a crucial contribution to our topic.  We will examine them one by one and
-highlight some of the most important works.
+The purpose of this chapter is to give a brief survey of academic literature with respect to our thesis.
+There are two major areas of Computer Science that are related to out research: Knowledge Representation (KR) and Natural Language
+Processing (NLP). We will examine them one by one and highlight some of the most important works.
 
 \section{Knowledge Representation}
 The field of Knowledge Representation is concerned with how the knowledge about our physical world can be stored, managed and
-utilized by machines or computers.
-KR owes its existence to the more general field of Artificial Intelligence, which prompted the study of encoding information about
-the physical reality into an intelligent system in such a way that it can be used by that system to solve complex problems.
+utilized by computers. KR owes its existence to the more general field of Artificial Intelligence, which prompted the study of
+encoding information about the physical reality into an intelligent system in such a way that it can be used by that system to
+solve complex problems.
 
 The main presupposition of the whole field of KR is that, in order for an intelligent agent to resolve a difficult problem, it
 needs an access to some form of a knowledge specific to a particular domain and that knowledge should be stored inside the agent.
@@ -59,8 +57,8 @@ The typical ontology consists of:
         ontology.}
 \end{enumerate}
 At the first sight, the description of an ontology highly resembles that of a database. Indeed, it is true that every database can
-be seen as a special case of ontology, but not vise-versa. As noted in \cite{krhyp}, the power of ontologies lies not in what can
-be said in it, but exactly \textit{what can be left unsaid}. For example, suppose we want to store the birth date of our
+be seen as a special case of an ontology, but not vise-versa. As noted in \cite{krhyp}, the power of ontologies lies not in what can
+be said in them, but exactly \textit{what can be left unsaid}. For example, suppose we want to store the birth date of our
 grandfather, but all we know about him is that he won a medal fighting in WWII.
 Then we are forced, using a database, to left the \texttt{birth\_date} field empty, thus loosing the knowledge of his heroic deed.
 But, we can eloquently express this knowledge in some ontological lisp-like language as:
@@ -84,8 +82,8 @@ Although an ontology can be tailored to do so, it is not in any way a trivial ma
 this issue, but in the different area. He designed an extension for XPath, the first order node-selecting language for XML.
 
 Catherine Lai and Steven Bird \cite{ling} described the domain of linguistic trees and discussed the expressive requirements for a
-query language. Then they presented a language that can a wide range of queries over these trees, and showed that the language is
-first order complete. This language is also an extension of XPath.
+query language. Then they presented a language that can express a wide range of queries over these trees, and showed that the
+language is first order complete. This language is also an extension of XPath.
 
 Artale et al. \cite{artale} did a comprehensive survey of various temporal knowledge representation formalisms.
 In particular, they analysed ontology and query languages based on the linear
@@ -99,12 +97,12 @@ The early researches in KR saw the unharvested power of logic -- especially firs
 intelligent system. Subsequent works showed that FOL can provide semantics for specific kind of KR structures:
 \textit{frames} \cite{frames}. Later, Brachman and Levesque proved \cite{krhyp} that we don't need the \textit{whole} FOL for that
 purpose, but only certain fragments of it. Moreover, different fragments of FOL have different expressive power and tractability.
-Thus, research in the area of Description Logic began under the label \textit{terminological systems}, only to be later renamed to
-\textit{Description Logic} when the focus was shifted to the properties of underlying logical systems.
+Thus, a research began under the label \textit{terminological systems}, only to be later renamed to
+\textit{Description Logic} when the main focus was shifted to the properties of underlying logical systems.
 
 Description Logic finds its application in the context of this thesis as a natural formalism for family trees. However, as
 expressive as any DL can be, formulating the concept of time requires adding another modal operator. Any logic which handles time
-is knows as \textit{temporal logic}. Philosophers have tried to put time into a coherent framework since \textit{Aristotle}, in
+is knows as \textit{temporal logic}. Philosophers have tried to put time into a coherent framework since Aristotle, in
 the 20th century mathematicians and computer scientists proposed various formalisms, among which was Allens' \textit{interval
 algebra}\cite{allen} and the temporal logic of Shoham\cite{shoh}. Thus, what we need in this thesis is an amalgamation of a
 description and temporal logic.
@@ -115,9 +113,9 @@ features of his formalism are the complete preservation of original DL and the u
 concepts and time entires.
 
 The application of temporal logic to graphs, relational databases and ontologies is also a heavily-invested subject.
-Barcelo and Lubkin examined \cite{barcelo} several temporal logics over unranked trees and characterize commonly used fragments of
+Barcelo and Lubkin examined \cite{barcelo} several temporal logics over unranked trees and characterized commonly used fragments of
 first-order (FO) and monadic second-order logic (MSO) for them. They also considered MSO sibling-invariant queries, that can use the
-sibling ordering but do not depend on the particular one used, and captured them by a variant of the μ-calculus with modulo
+sibling ordering but do not depend on the particular one used, and captured them by a variant of the $\mu$-calculus with modulo
 quantifiers.
 
 Alexander Tuzhilin and James Clifford defined \cite{clif} a temporal algebra that is applicable to any temporal relational data
@@ -129,7 +127,7 @@ Perry in his dissertation \cite{perry} highlighted that even in state-of-the-art
 expressing the concept of time is an arduous task. He augmented the \textit{Resource Description Framework} with temporal RDF
 graphs and extended the W3C-recommended SPARQL query language to support these new structures.
 
-An adequate representation of time is the holy grail among the researchers in the field of ontology development.  Baratis et al.
+An adequate representation of time is the holy grail among researchers in the field of ontology development.  Baratis et al.
 \cite{toql} designed and implemented \textit{TOQL}: a high-level SQL-like language which is capable of expressing temporal
 queries. They motivate the need for such a language by noting that conveying the concept of time using classical languages, such
 as OWL, is proven to be difficult, although feasible. They also developed an application that supports translation and execution
@@ -159,7 +157,7 @@ considerably over the last half-century, especially the domain of ontologies. Ho
 satisfy all of the following criteria:
 \begin{enumerate}
     \item{Employ either a temporal ontology or a temporal database to store knowledge of temporal family relations.}
-    \item{Propose a solution for effective navigation in a genealogical tree.}
+    \item{Propose a solution for effective navigation in a genealogical tree via kinship terms.}
     \item{Design and implement a text parser for querying temporal ontologies in natural language.}
 \end{enumerate}
 Although there were articles that partially fulfill some of these requirements, none of them satisfied all.
