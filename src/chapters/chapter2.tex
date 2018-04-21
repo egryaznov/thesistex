@@ -25,14 +25,14 @@ This original formulation of the hypothesis is due to Smith \cite{smithyp}.
 Brachman and Levesque outlined the hypothesis in their article \textit{Expressiveness and tractability in Knowledge Representation
 and Reasoning}\cite{krhyp}. The authors argue that the trade-off between \textit{expressiveness} of a knowledge-based system and
 its \textit{tractability} (i.e. the ability to reason correctly) is intrinsic to every such system, and can only be partially
-solved.  According to them, it's impossible to implement a knowledge-based system that will be both highly expressive and
+solved.  According to them, it is impossible to implement a knowledge-based system that will be both highly expressive and
 completely tractable.
 
 Moreover, the whole enterprise of encoding knowledge directly into an agent is proven to be useful only in domain-specific
 applications, such as the famous \textit{block world} \cite{shrdlu} domain. A solution with at least partially hard-coded
 knowledge is tremendously difficult to scale. Since the dawn of Machine Learning, the plausibility of the hypothesis is
 continuously challenged. Indeed, it is questionable whether we can say about a neural network that it stores knowledge in the
-weights of its neurons. Thus, today the field of KR doesn't enjoy that much popularity because the main focus of the AI community
+weights of its neurons. Thus, today the field of KR does not enjoy that much popularity because the main focus of the AI community
 has shifted to other areas, such as Deep Learning.
 
 The most prominent advances in the KR field were the development of Description (Terminological) and Temporal logics and the
@@ -74,7 +74,8 @@ Protege, In4j and others. These systems have already been heavily used in the va
 For instance, Tan Mee Ting \cite{tanfamily} designed and
 implemented a genealogical ontology using Protege and evaluated its consistency with Pellet, HermiT and FACT++ reasoners. He
 showed that it is possible to construct a family ontology using \textit{Semantic Web} \cite{web} technologies with full capability of
-exchanging family history among all interested parties.
+exchanging family history among all interested parties. Hovewer, he did not adress the issue of navigating the family tree using
+kinship terms.
 
 An ontology can be used to model any kind of family tree, but the problem arises when a user wants to query his relatives using
 kinship terms. No standard out-of-the-box ontology query language is able to articulate statements such as in our example above.
@@ -91,11 +92,38 @@ temporal logic LTL, the multi-dimensional Halpern-Shoham interval temporal logic
 note that the W3C standard ontology languages, OWL 2 QL and OWL 2 EL, are designed to represent knowledge over a static domain,
 and are not well-suited for temporal data.
 
+Modelling kinship with mathematics and programming languages, such as LISP, has been an extensive area of research.
+Many people committed a lot of work into the field, including Bartlema and Winkelbauer, who investigated\cite{bartlema} the
+structure of a traditional family and wrote a simple program that assigns fathers to children. Their main purpose was to
+understand how this structure affects fertility, mortality and nuptiality rates. Although promising, small step has been made
+towards designing a language to reason about kinship. Also, their program cannot express temporal information.
+
+Another prominent attempt in modelling kinship with LISP was made\cite{findler} by Nicholas Findler, who examined various
+kinship structures that exist in literature and combined them together to create a LISP program that can perform arbitrary complex
+kinship queries. Although his solution is culture-independent, he did not take the full advantage of LISP as a programming
+language, and because of that it is impossible to express queries which are not about family interrelations. In contrast, our system
+does not suffer from that restriction.
+
+More abstract, algebraic approach was taken\cite{read} by D. W. Read, who analysed the terminology of American Kinship in terms of
+its' mathematical properties. Specifically, he invented an algebraic system, a semigroup, isomorphic to the one particular type of
+kinship: American Kinship, which refers to the terminology used by English speakers. His algebra clearly demonstrates that a
+system of kin terms obeys strict rules which can be successfully ascertained by formal methods.
+
+Periclev et al. developed\cite{vlad} a LISP program called \texttt{KINSHIP} that produces the guaranteed-simplest analyses,
+employing a minimum number of features and components in kin term definitions, as well as two further preference constraints that
+they propose in their paper, which reduce the number of multiple componential models arising from alternative simplest kin term
+definitions conforming to one feature set. The program is used to study the morphological and phonological properties of kin terms
+in English and Bolgarian languages.
+
+According to many authors\cite{read} \cite{vlad} there have been many attempts to create adequate models of kinship based on
+mathematics, but these models are either lacking management of temporal information or use only a limited subset of their
+programming language. This is not the case with our system.
+
 \subsection{Temporal and Description Logics}
 The usage of logic in the field of KR is motivated by its excellence in such areas as mathematics and computer science in general.
 The early researches in KR saw the unharvested power of logic -- especially first-order logic -- as a main component in any
 intelligent system. Subsequent works showed that FOL can provide semantics for specific kind of KR structures:
-\textit{frames} \cite{frames}. Later, Brachman and Levesque proved \cite{krhyp} that we don't need the \textit{whole} FOL for that
+\textit{frames} \cite{frames}. Later, Brachman and Levesque proved \cite{krhyp} that we do not need the \textit{whole} FOL for that
 purpose, but only certain fragments of it. Moreover, different fragments of FOL have different expressive power and tractability.
 Thus, a research began under the label \textit{terminological systems}, only to be later renamed to
 \textit{Description Logic} when the main focus was shifted to the properties of underlying logical systems.
@@ -144,8 +172,7 @@ more operations that most of the other translators. They tested their program on
 
 Another similar attempt was made \cite{not} by Norouzifard et al. They implemented an expert system using Prolog to transform a
 sentence in a natural language to SQL. Chaudhari \cite{chaudhari} presented a light weight technique of converting a natural
-language statement into equivalent SQL
-statement.
+language statement into equivalent SQL statement.
 
 Nelken et al. took \cite{nelken} a step further and presented a novel controlled NL interface to \textit{temporal databases}, based on
 translating NL questions into \textit{SQL/Temporal}, a temporal database query language. They noted that their translation method
@@ -161,4 +188,5 @@ satisfy all of the following criteria:
     \item{Design and implement a text parser for querying temporal ontologies in natural language.}
 \end{enumerate}
 Although there were articles that partially fulfill some of these requirements, none of them satisfied all.
-This entails the novelty of our work.
+Moreover, since our solution is specifically tailored to work only on family trees, we can conclude that its' performance is
+better than any other general one. This entails novelty of our work.
