@@ -4,11 +4,11 @@ This is the LaTeX documents for my thesis. If you wish to view the compiled last
 
 Table of Content:
 
-1. Introduction -- TODO
-2. Literature Review -- DONE
-3. Methodology -- DONE
-4. Implementation - TODO
+1. Introduction -------------- TODO
+2. Literature Review --------- DONE
+3. Methodology --------------- DONE
+4. Implementation ------------ TODO
 5. Evaluation and Discussion - TODO
-6. Conclusion - TODO
+6. Conclusion ---------------- TODO
 
-This thesis is complete by 34%.
+This thesis is completed by 34%.
