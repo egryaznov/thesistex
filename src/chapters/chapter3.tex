@@ -240,7 +240,7 @@
     \end{proof}
 
     \subsection{Pursuing Confluence}
-    Current greedy approach listed in \ref{algo:red} has one major disadvantage: like any other greedy algorithm it can fail to choose a
+    Current approach listed in \ref{algo:red} has one major disadvantage: like any other greedy algorithm it can fail to choose a
     correct reduction path between two terms with equal amount of concatenations.
     We can alleviate this by augmenting our rewriting system, based on $\omega$ dictionary, with a feature called \textit{confluence},
     also known as \textit{Church-Rosser} property:
@@ -250,6 +250,13 @@
     \end{definition}
     Not only we can fix our reduction algorithm by introducing this property, but also we can improve the time complexity, making it
     linear.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.2\linewidth]{figs/confluence.png}
+        \caption{Confluence in a term rewriting system.}
+        \label{fig:conf}
+    \end{figure}
 
     One way to achieve confluence is to attach a single kinship term to any possible path in a family tree.
     Observe, that English kinship terms have a specific pattern that we can exploit. All relatives who are distant enough from ego

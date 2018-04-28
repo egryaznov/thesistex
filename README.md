@@ -7,8 +7,8 @@ Table of Content:
 1. Introduction -------------- TODO
 2. Literature Review --------- DONE
 3. Methodology --------------- DONE
-4. Implementation ------------ TODO
+4. Implementation ------------ DONE
 5. Evaluation and Discussion - TODO
-6. Conclusion ---------------- TODO
+6. Conclusion ---------------- DONE
 
-This thesis is completed by 34%.
+This thesis is complete by 66,66..%.

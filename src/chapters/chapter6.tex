@@ -1,5 +1,38 @@
 \chapter{Conclusion}
 \label{chap:conclusion}
+% какая была проблема
+% значимость
+% как мы её решили
+% с какими трудностями столкнулись
+% что ещё можно сделать
+In this work we solved the problem of efficient navigation in temporal genealogies by designing domain-specific programming language
+KISP and implementing its interpreter. To further facilitate the use of our program, tree visualiser and virtual assistant have
+been developed. By the term "efficient" we mean three things:
+\begin{enumerate}
+    \item{It should have sufficient expressive power.}
+    \item{It must be fast enough.}
+    \item{It should be as intuitive as possible.}
+\end{enumerate}
+We are certain that our project fully covers every one of them.
 
+From the very start of our history, we gathered, analysed and composed information about our ancestors and relatives.
+Although, with the ubiquitous use of computers, we can do it more effectively than ever, the present market solutions are
+found to be inadequate in one way or the other. Particularly, the vast majority of them are either lacking expressiveness or are
+too complicated and, therefore, require a special training just to be used. In contrast, our project manages to be a user-friendly
+application, while at the same time having a high level of expressive power.
 
-\ldots
+During the course of our work we faced such challenges as reducing long kinship terms and developing a swift 2D graphical
+engine, all of which were successfully solved.
+
+\section{Future Work}
+However, there are some topics yet left to tackle in the area of kinship and genealogy management. On the theoretical side, there
+is a problem of total term reduction and formal language enrichment. It is also interesting to shift attention to other languages
+and cultures with different kinship structures, such as Russian or Hawaiian. The constructed formalism can be considered from the
+
+On the practical side, one can consider to improve the virtual assistant component. Besides already mentioned Voice Generation \&
+Recognition technology, it can be made context-aware, which will increase its intelligence. Additionally, the family ontology can
+be enhanced to incorporate information about divorces and deaths.
+
+Further improvements may also include new data types and standard functions for KISP language. Specifically, it is beneficial to
+add a \texttt{char} type that represents individual characters in a string. Another useful feature is support for \textit{variadic
+lambdas}, which will significantly increase the versatility of KISP.
