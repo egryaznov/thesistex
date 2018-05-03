@@ -1,14 +1,16 @@
 ### SEMANTIC QUERY LANGUAGE FOR TEMPORAL GENEALOGICAL TREES
 
-This is the LaTeX documents for my thesis. If you wish to view the compiled last version of the thesis, proceed right in the 'src/thesis.pdf'.
+This is the LaTeX documents for my thesis. If you wish to view the very last version of the thesis, proceed right in the 'src/thesis.pdf'.
 
 Table of Content:
 
-1. Introduction -------------- TODO
+1. Introduction -------------- DONE
 2. Literature Review --------- DONE
 3. Methodology --------------- DONE
 4. Implementation ------------ DONE
 5. Evaluation and Discussion - TODO
 6. Conclusion ---------------- DONE
 
-This thesis is complete by 66,66..%.
+Abstract -- DONE
+
+This thesis is completed by 84%
