@@ -62,7 +62,7 @@ Database Manager, Virtual Assistant and KISP Interpreter.
         )
     )
     \end{verbatim}
-    However, using a reference before its definition is prohibited. For instance, the following code won't execute:
+    However, using a reference before its definition is prohibited. For instance, the following code would not execute:
     \begin{verbatim}
     (+ 1 two)
     (define two 2)
@@ -134,7 +134,7 @@ Database Manager, Virtual Assistant and KISP Interpreter.
         \item{Separate them with a single comma without any in-between spaces.}
     \end{enumerate}
 
-\section{Program Structure}
+\section{System Structure}
     % User requirements!!!
     % Если что спросят про bonds, просто сказать что в требованиях такого функционала не было.
     Firstly, we shall determine the user requirements for our program. Since there was no individual customer, who would say what
@@ -187,8 +187,13 @@ Database Manager, Virtual Assistant and KISP Interpreter.
     their connections to each other in the form of table records. We chose a relational database for that purpose and not our own
     solution mainly because the current ones are much more efficient and because it was too costly to enrich KISP with such
     features. We selected SQLite as the RDBMS engine for our application, since it is compact and effective at the same time.
-
-    The Entity-Relation diagram\ref{fig:er} has been converted to tables in the following way:
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\linewidth]{figs/entity.png}
+        \caption{Entity-Relation Database Diagram}
+        \label{fig:er}
+    \end{figure}
+    The Entity-Relation diagram has been converted to tables in the following way:
     \begin{enumerate}
         \item{The main entity \textit{Person} is presented as a table incorporating all information about people in a family tree. It
             has ID field as a primary key. }
@@ -256,21 +261,79 @@ Database Manager, Virtual Assistant and KISP Interpreter.
     For the implementation of the KISP language we chose the most straightforward approach: firstly parse the source code, secondly,
     construct an AST, then perform an evaluation of that tree starting from its leaves, and finally output the result of the
     evaluation. However, in order to expedite this process, we introduced a caching mechanism, which remembers what terms yields to
-    what results. Term caching is a questionable feature, because in some cases it may produce incorrect results. Bugs may arise when
-    we redefine some term that has been cached previously.
+    what results. Experienced user can manipulate this mechanism by the following commands:
+    \begin{enumerate}
+        \item{\texttt{Flush} completely removes all entries from cache table.}
+        \item{\texttt{Set cache} enables caching mechanism.}
+        \item{\texttt{Set nocache} disables caching mechanism.}
+    \end{enumerate}
+    Cache table automatically updates each time new definition is introduced or an old reference is redefined.
 
-    For example, let's evaluate the following terms:
+    For example, let’s evaluate the following terms:
     \begin{verbatim}
-        (define ego (person 'John Doe'))
-
+        (define ego (person ’John Smith’))
         (= ego ego)
-
-        (define ego (person 'Joe Sixpack'))
-
-        (= 'Joe' (attr ego 'first name'))
+        (define ego (person 'John Doe’))
+        (= ’Doe’ (attr ego ’last name’))
     \end{verbatim}
-    The last term will be incorrectly evaluated to \texttt{false}, since the result of the term \texttt{ego} was not updated in the
-    cache table. To alleviate that problem we added the command \texttt{flush} into our virtual assistant, which removes all entries
-    from that table.
+    The last term will be correctly evaluated to \texttt{true}, since the result of the term \texttt{ego} was automatically
+    updated in the cache table.
 
     This concludes the implementation chapter.
+
+\section{Query Examples}
+In this section we will demonstrate how one can use KISP to perform various queries in a genealogical tree. Particularly, we
+focus our attention on statements that express kinship terms.
+
+Let's start with a simple task of selecting people based on a certain boolean condition. Suppose we want to query only those, who
+have at least one child. This can be accomplished as follows:
+\begin{verbatim}
+(filter (lambda (p) (< 0 (count (children p)))) people)
+\end{verbatim}
+Here we iterate through the list of all people in a tree and take only those, on who defined lambda predicate evaluated to
+\texttt{true}. The number of children for a particular person is calculated by counting elements of the list \texttt{(children
+p)}.
+
+The next task is to select all husbands, that is, all men who are married. This can be done in two ways: either select only
+males and then discard all bachelors, or combine the two operations together in a single boolean predicate using \texttt{and}
+clause:
+\begin{verbatim}
+(filter (lambda (p) (not (= void (spouse p))))
+            (filter (lambda (p) (= 'MALE' (attr p 'sex')))
+            people))
+(filter (lambda (p) (and (= 'MALE' (attr p 'sex'))
+                         (not (= vacant (spouse p)))))
+    people)
+\end{verbatim}
+The advantage of the second approach is that the list \texttt{people} will be iterated only once.
+
+Now to the more advanced queries; suppose that the term \texttt{ego} stands for the user's node in an ancestry, and he wants to
+know how many cousins he has:
+\begin{verbatim}
+(define parents (lambda (p) (join (mother p) (father p))))
+(define cousins
+    (lambda (p) (children (children (parents (parents p))))))
+(- (count (cousins ego)) 1)
+\end{verbatim}
+This is where the expressive power of KISP truly comes into play. Although \texttt{cousins} is not a standard KISP function, we
+can easily implement it using kinship framework of KISP, which successfully utilizes the structure of natural kinship terms.
+Moreover, notice how the function \texttt{parents} is expressed. Since a parent is either a mother or a father, it corresponds to
+the formal kinship term $(mother \vee father)$, which is implemented as a \textit{join} of two or more lists. And because every
+cousin is a grand-child of one's grandparents, it corresponds to:
+\begin{align*}
+    (son \vee daughter)(son \vee daughter)(mother \vee father)(mother \vee father)
+\end{align*}
+The last decrement was made because in this scheme the \texttt{ego} itself will be included to the resulting list.
+
+Finally, temporal queries can be expressed with the help of the type \textit{Date}. For instance, if we need to know, who, among our
+relatives, was born during the WWII, we just need to evaluate:
+\begin{verbatim}
+(define WWII-start (date '01.09.1939'))
+(define WWII-end (date '02.09.1945'))
+(filter (lambda (p) (during (attr p 'birthdate') WWII-start WWII-end))
+    people)
+\end{verbatim}
+The type \textit{Date} provides all the necessary functions for working with temporal information.
+
+Because KISP is Turing-complete and inherits LISP's capabilities of meta-programming, one can easily extend it with any
+functionality that one wants.

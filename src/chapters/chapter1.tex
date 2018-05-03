@@ -1,5 +1,88 @@
-%!TEX root = root.tex
-
 \chapter{Introduction}
 \label{chap:intro}
-\chaptermark{Optional running chapter heading}
+% goal
+% existing solutions
+% outline
+    From the very beginning of mankind we assembled, compiled and analyzed the information about our ancestors. The study of genealogy
+    is regarded as a noble enterprise, often pursued with extreme care and diligence. Not only it satisfies the desire to carve out a
+    place for one's family in the larger historical picture, but also provides the sense of responsibility to preserve the past for
+    future generations. However, as a genealogist goes deeper into the family history, its tree grows exponentially, thus making his
+    work more and more arduous.
+
+    With the advent of computers, we are able to manage genealogies of incredible size. Now, due to the progress in storage
+    engineering, it became possible to maintain and expand existing ancestries of considerable size. But merely keeping the data on
+    physical disks is not enough. To sufficiently realize the full potential of computers in genealogy management, one should
+    also provide means of inquiry in ancestral data.
+
+    If we want to teach computers understand lineage, we need to construct some type of artificial language that will allow us to
+    effectively navigate and query any possible family tree. But observe, that an ancestry already has its own idiosyncratic
+    terminology and grammar, which can be successfully used as a natural basis for such a language. Our research is an attempt to do
+    exactly that.
+
+    There is another important concept to consider when working with family trees, namely the concept of \textit{time}. A genealogy
+    can exist only in specific time framework that is imposed on it by the very nature of history itself. As a result, any computer
+    representation of an ancestry that lacks this framework is exorbitantly inadequate. Therefore, its preservation is a crucial
+    feature for any software that is aimed for effective genealogy management.
+
+\section{The Goal}
+    Our main goal is to design and implement a programming language that will allow us to \textit{efficiently} query temporal genealogical
+    trees, while at the same time being as natural as possible. Secondary goal is to develop a software that effectively utilizes this
+    language to provide a convenient user interface for working with ancestries.
+
+    There are three requirements that we want our language to satisfy:
+    \begin{enumerate}
+        \item{\textbf{Expressiveness}. The language should allow for any possible consanguine as well as affinal relations to be
+            described.}
+        \item{\textbf{Speed}. The response time must not exceed the standard for an interpreted language.}
+        \item{\textbf{Simplicity}. Language should be able to express natural kinship and temporal terms as straightforward as possible.}
+    \end{enumerate}
+    The phrase "response time" stands for the time passed between the start and finish of a programs evaluation. The last quality is
+    what truly distinguishes our approach from the rest, allowing for the most obvious representation of genealogical and temporal
+    information.
+
+\section{Existing Solutions}
+    Of course, there are many applications available for working with family trees. According to the web resource\cite{gensoft} there
+    are at least $1015$ programs for genealogical management. One may say that given such an abundance of software, there is
+    nothing more to add. However, most of it accomplish goals that are drastically different from ours. Moreover, we shall see that
+    popular solutions are over-engineered and suffer from what is known as \textit{scope} and \textit{feature creep}.
+
+    \begin{enumerate}
+        \item{\textbf{Family Tree Builder}. Started as \textit{Software as a Service} in 2003, now became one of the most
+            widespread\cite{fambuild} applications in this area. Has a lavish set of functionality, including relative and history
+            matching, detailed privacy, family sites, maps and many more. Judging from the image \ref{fig:ftmShot} of its main screen
+            we can say that it is a Microsoft Office of genealogy software.}
+        \item{\textbf{Neo4j}. A graph database management system\cite{neo4j} written in Java. Initially released in 2007, it is now considered
+            to be the most popular graph database according to DB-Engines ranking\cite{rank}. It is feasible, although unacceptable to
+            a non-specialist, to create a temporal \textit{ontology} of a family tree using Neo4j and its domain specific language
+            Gremlin.  However, any such attempt would fail to take advantage of the structure of kinship language, due to Gremlin's
+            general nature.}
+        \item{\textbf{RootsMagic}. This application\cite{roots}, similarly to Family Tree Builder, initially was released in 2003, it
+            ships with full package of diverse features, such as single-file database, four navigational views, and many more.}
+    \end{enumerate}
+    During our review of equivalent software, we found out that existing solutions for ancestry management are either inadequate in
+    one or more ways, or accomplish quite different goals. There is no application available that would sufficiently achieve our
+    main aim with all its stated qualities.
+
+\section{Thesis Outline}
+In the following five chapters we will review the existing literature concerning our topic, discuss the methodology of our work,
+present the project's implementation, demonstrate its correctness and conclude the results.
+
+In the second chapter "Literature Review" we examine scientific articles, books and journals from three major categories:
+Knowledge Representation, Ontology Building and Natural Language Processing. We focus our attention primarily on the first two,
+since the study of lineage is a special case of knowledge management. Moreover, we inspect various anthropological sources, such
+as works of Claude Levi-Strauss\cite{strauss}, which concerns the nature of kinship structures in different societies.
+
+In the third chapter "Methodology" we formalize the kinship language of one particular culture, namely traditional American
+culture in the sense of Read\cite{read}. Then we explore its many mathematical properties and show how it can fit into the larger
+framework of a programming language.
+
+In the forth chapter "Implementation" we present the composition of the complete project, including full documentation of our new
+LISP-like programming language. In particular, three system's components, namely Virtual Assistant, Genealogy Manager and
+Interpreter are discussed.
+
+In the fifth chapter "Evaluation and Discussion" we show how our application was tested. We use three methods to perform the
+audition: Assertion, Unit and Performance Testing, in which we benchmark the interpreter for our new programming language against
+the interpreter of Racket.
+
+Finally, in the last sixth chapter "Conclusions" we compile and demonstrate the results of our work. Specifically, we confirm that
+our system indeed achieves the main goal of this thesis and satisfies all proposed qualities.
