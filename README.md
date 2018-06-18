@@ -12,7 +12,9 @@ Table of Content:
 6. Conclusion ---------------- DONE
 
 Abstract ------- DONE
+
 Presentation --- DONE
+
 Final Defense -- PASSED
 
 This word is completed by 100%
