@@ -6,10 +6,12 @@
 %%%%% END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{atbegshi,picture}
 \AtBeginShipout{\AtBeginShipoutUpperLeft{%
-  \put(\dimexpr\paperwidth-1cm\relax,-1.5cm){\makebox[0pt][r]{\includegraphics[width=3cm]{figs/inno.jpg}}}%
+  \put(\dimexpr\paperwidth-1cm\relax,-1.5cm){\makebox[0pt][r]{\includegraphics[width=3cm]{figs/inno.png}}}%
 }}
 
 \usepackage[english]{babel}
+
+\usepackage{pdfpages}
 \usepackage{blindtext}
 
 \newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
@@ -113,8 +115,7 @@
 }
 
 \begin{document}\sloppy
-
-\include{title}
+\includepdf[pages=-]{titles/BS.pdf}
 \include{largetitle}
 \newpage
 \dedication{To my parents and close relatives. This work would not be possible without their help.}
