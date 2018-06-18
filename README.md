@@ -8,9 +8,13 @@ Table of Content:
 2. Literature Review --------- DONE
 3. Methodology --------------- DONE
 4. Implementation ------------ DONE
-5. Evaluation and Discussion - TODO
+5. Evaluation and Discussion - DONE
 6. Conclusion ---------------- DONE
 
-Abstract -- DONE
+Abstract ------- DONE
 
-This thesis is completed by 84%
+Presentation --- DONE
+
+Final Defense -- PASSED
+
+This word is completed by 100%
